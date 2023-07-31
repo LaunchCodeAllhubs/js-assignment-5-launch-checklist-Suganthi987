@@ -87,10 +87,10 @@ if(fuelLevel<10000){
     <h2 id="launchStatus" data-testid="launchStatus" color ="rgb(199, 37, 78)">Shuttle Not Ready for Launch</h2>
     
         <ol>
-            <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
-            <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
-            <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
-            <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
+            <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready for launch</li>
+            <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready for launch</li>
+            <li id="fuelStatus" data-testid="fuelStatus">Fuel level low for launch</li>
+            <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${CargoLevel}</li>
         </ol>`;
 }
 else if(cargoLevel>10000){
@@ -102,7 +102,7 @@ else if(cargoLevel>10000){
             <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
             <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
             <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
-            <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel}</li>
+            <li id="cargoStatus" data-testid="cargoStatus">Cargo mass too heavy for launch</li>
         </ol>`;
 }
 else{
