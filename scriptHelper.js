@@ -20,9 +20,9 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 function validateInput(testInput) {
     if (isNaN(testInput)){
-            return "Is a string";
+            return "Not a Number";
         }else{
-        return "Is a number";
+        return "Is a Number";
     
     
     }   
@@ -33,47 +33,47 @@ function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
     const launchStatusCheck = document.getElementById("launchStatusCheck");
     const faultyItems = document.getElementById("faultyItems");
     faultyItems.style.visibility = "visible";
-    if (validateInput(pilot) === "Is a number"){ 
+    if (validateInput(pilot) === "Is a Number"){ 
         launchStatusCheck.innerHTML = `
         <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
             <ol>
-                <li id="pilotStatus" data-testid="pilotStatus">${pilot} is not Ready</li>
-                <li id="copilotStatus" data-testid="copilotStatus">${copilot} Ready</li>
+                <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is not ready</li>
+                <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
                 <li id="fuelStatus" data-testid="fuelStatus">Fuel level high enough for launch</li>
                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
             </ol>`;
 
     }
-    else if (validateInput(copilot) === "Is a number"){
+    else if (validateInput(copilot) === "Is a Number"){
         launchStatusCheck.innerHTML = 
         `<h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
             <ol>
-                <li id="pilotStatus" data-testid="pilotStatus">${pilot} is Ready</li>
-                <li id="copilotStatus" data-testid="copilotStatus">${copilot} is not Ready</li>
+                <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+                <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is not ready</li>
                 <li id="fuelStatus" data-testid="fuelStatus">Fuel level high enough for launch</li>
                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
             </ol>`;
 
     }
-    else if (validateInput(fuelLevel) === "Is a string"){
+    else if (validateInput(fuelLevel) === "Not a Number"){
        // alert("Invalid fuel Level!");
        launchStatusCheck.innerHTML = `
         <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
             <ol>
-                <li id="pilotStatus" data-testid="pilotStatus">${pilot} is Ready</li>
-                <li id="copilotStatus" data-testid="copilotStatus">${copilot} is Ready</li>
+                <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+                <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
                 <li id="fuelStatus" data-testid="fuelStatus">FuelLevel invalid for launch</li>
                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
             </ol>`;
     }
-    else if(validateInput(cargoLevel) === "Is a string"){
+    else if(validateInput(cargoLevel) === "Not a Number"){
         //alert("Invalid cargoLevel!");
         launchStatusCheck.innerHTML = `
-        <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
+        <h2 id="launchStatus" data-testid="launchStatus">Shuttle Not Ready for Launch</h2>
         
             <ol>
-                <li id="pilotStatus" data-testid="pilotStatus">${pilot} is Ready</li>
-                <li id="copilotStatus" data-testid="copilotStatus">${copilot} is Ready</li>
+                <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+                <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
                 <li id="fuelStatus" data-testid="fuelStatus">Fuel level high enough for launch</li>
                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass invalid for launch</li>
             </ol>`;
@@ -82,13 +82,13 @@ function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
 else{
     
 if(fuelLevel<10000){
-    launchStatusCheck.style.color = "red";
+    launchStatusCheck.style.color = "rgb(199, 37, 78)";
     launchStatusCheck.innerHTML = `
-    <h2 id="launchStatus" data-testid="launchStatus" color ="red">Fuel level too low to launch!</h2>
+    <h2 id="launchStatus" data-testid="launchStatus" color ="rgb(199, 37, 78)">Shuttle Not Ready for Launch</h2>
     
         <ol>
-            <li id="pilotStatus" data-testid="pilotStatus">${pilot} Ready</li>
-            <li id="copilotStatus" data-testid="copilotStatus">${copilot} Ready</li>
+            <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+            <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
             <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
             <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
         </ol>`;
@@ -96,11 +96,11 @@ if(fuelLevel<10000){
 else if(cargoLevel>10000){
     launchStatusCheck.style.color = "#C7254E";
     launchStatusCheck.innerHTML = `
-    <h2 id="launchStatus" data-testid="launchStatus" color ="#C7254E">Cargo too heavy to launch!</h2>
+    <h2 id="launchStatus" data-testid="launchStatus" color ="#C7254E">Cargo too heavy for launch</h2>
     
         <ol>
-            <li id="pilotStatus" data-testid="pilotStatus">${pilot} Ready</li>
-            <li id="copilotStatus" data-testid="copilotStatus">${copilot} Ready</li>
+            <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+            <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
             <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
             <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel}</li>
         </ol>`;
@@ -111,8 +111,8 @@ else{
     launchStatusCheck.innerHTML = `
     <h2 id="launchStatus" data-testid="launchStatus" color = "#419F6A">Cargo ready to launch!</h2>
         <ol>
-            <li id="pilotStatus" data-testid="pilotStatus" >${pilot} Ready</li>
-            <li id="copilotStatus" data-testid="copilotStatus" >${copilot} Ready</li>
+            <li id="pilotStatus" data-testid="pilotStatus" >Pilot ${pilot} is ready</li>
+            <li id="copilotStatus" data-testid="copilotStatus" >Co-pilot ${copilot} is ready</li>
             <li id="fuelStatus" data-testid="fuelStatus" >Fuel level ${fuelLevel}</li>
             <li id="cargoStatus" data-testid="cargoStatus" >Cargo mass ${cargoLevel}</li>
         </ol>`;
