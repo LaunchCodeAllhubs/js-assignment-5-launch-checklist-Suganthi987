@@ -69,12 +69,12 @@ function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
     else if(validateInput(cargoLevel) === "Not a Number"){
         //alert("Invalid cargoLevel!");
         launchStatusCheck.innerHTML = `
-        <h2 id="launchStatus" data-testid="launchStatus">Shuttle Not Ready for Launch</h2>
+        <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
         
             <ol>
                 <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
                 <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
-                <li id="fuelStatus" data-testid="fuelStatus">Fuel level high enough for launch</li>
+                <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass invalid for launch</li>
             </ol>`;
 
@@ -96,7 +96,7 @@ if(fuelLevel<10000){
 else if(cargoLevel>10000){
     launchStatusCheck.style.color = "#C7254E";
     launchStatusCheck.innerHTML = `
-    <h2 id="launchStatus" data-testid="launchStatus" color ="#C7254E">Cargo too heavy for launch</h2>
+    <h2 id="launchStatus" data-testid="launchStatus" color ="#C7254E">Shuttle Not Ready for launch</h2>
     
         <ol>
             <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
