@@ -32,15 +32,15 @@ function validateInput(testInput) {
 function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
     const launchStatusCheck = document.getElementById("launchStatusCheck");
     const faultyItems = document.getElementById("faultyItems");
-    faultyItems.style.visibility = "visible";
+//    faultyItems.style.visibility = "visible";
     if (validateInput(pilot) === "Is a Number"){ 
         launchStatusCheck.innerHTML = `
         <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
             <ol>
                 <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is not ready</li>
                 <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
-                <li id="fuelStatus" data-testid="fuelStatus">Fuel level high enough for launch</li>
-                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
+                <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel} high enough for launch</li>
+                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
             </ol>`;
 
     }
@@ -50,8 +50,8 @@ function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
             <ol>
                 <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
                 <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is not ready</li>
-                <li id="fuelStatus" data-testid="fuelStatus">Fuel level high enough for launch</li>
-                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
+                <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel} high enough for launch</li>
+                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
             </ol>`;
 
     }
@@ -63,7 +63,7 @@ function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
                 <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
                 <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
                 <li id="fuelStatus" data-testid="fuelStatus">FuelLevel invalid for launch</li>
-                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass low enough for launch</li>
+                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
             </ol>`;
     }
     else if(validateInput(cargoLevel) === "Not a Number"){
@@ -109,7 +109,7 @@ else{
     
     launchStatusCheck.style.color = "#419F6A";
     launchStatusCheck.innerHTML = `
-    <h2 id="launchStatus" data-testid="launchStatus" color = "#419F6A">Cargo ready to launch!</h2>
+    <h2 id="launchStatus" data-testid="launchStatus" color = "#419F6A">Cargo Ready for Launch!</h2>
         <ol>
             <li id="pilotStatus" data-testid="pilotStatus" >Pilot ${pilot} is ready</li>
             <li id="copilotStatus" data-testid="copilotStatus" >Co-pilot ${copilot} is ready</li>
