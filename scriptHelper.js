@@ -32,94 +32,118 @@ function validateInput(testInput) {
 function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
     const launchStatusCheck = document.getElementById("launchStatusCheck");
     const faultyItems = document.getElementById("faultyItems");
-//    faultyItems.style.visibility = "visible";
-    if (validateInput(pilot) === "Is a Number"){ 
-        launchStatusCheck.innerHTML = `
-        <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
-            <ol>
-                <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is not ready</li>
-                <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
-                <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel} high enough for launch</li>
-                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
-            </ol>`;
+    if (validateInput(pilotNameInput.value) === 'Empty'|| validateInput(coPilotNameInput.value) === 'Empty'|| 
+    validateInput(fuelLevelInput.value) === 'Empty'||validateInput(cargoMassInput.value) === 'Empty') {
+        alert('All fields are required');
+        launchStatus.innerHTML = 'Awaiting Information Before Launch';
+        launchStatus.style.color = 'rgb(0, 0, 0)';
+        list.style.visibility = 'hidden';
+    }
+      //check that fuelLevel and cargoLevel are numbers and pilot and co-pilot are strings
+    else if (
+        validateInput(fuelLevelInput.value) === 'Not a Number' || 
+        validateInput(cargoMassInput.value) === 'Not a Number'||
+        validateInput(pilotNameInput.value)==='Is a Number'||
+        validateInput(coPilotNameInput.value)==='Is a Number') {
+            alert(`Please enter text for names and numbers for fuel and cargo.`);
+            launchStatus.innerHTML = 'Awaiting Information Before Launch';
+            launchStatus.style.color = 'rgb(0, 0, 0)';
+            list.style.visibility = 'hidden';
+        }else{
+        formSubmission(document,list,pilotNameInput.value,coPilotNameInput.value,fuelLevelInput.value,cargoMassInput.value);
+        }
+    }
 
-    }
-    else if (validateInput(copilot) === "Is a Number"){
-        launchStatusCheck.innerHTML = 
-        `<h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
-            <ol>
-                <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
-                <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is not ready</li>
-                <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel} high enough for launch</li>
-                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
-            </ol>`;
+    let list = document.getElementById("faultyItems");
+    list.style.visibility='hidden';
+    //    faultyItems.style.visibility = "visible";
+//     if (validateInput(pilot) === "Is a Number"){ 
+//         launchStatusCheck.innerHTML = `
+//         <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
+//             <ol>
+//                 <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is not ready</li>
+//                 <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
+//                 <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel} high enough for launch</li>
+//                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
+//             </ol>`;
 
-    }
-    else if (validateInput(fuelLevel) === "Not a Number"){
-       // alert("Invalid fuel Level!");
-       launchStatusCheck.innerHTML = `
-        <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
-            <ol>
-                <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
-                <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
-                <li id="fuelStatus" data-testid="fuelStatus">FuelLevel invalid for launch</li>
-                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
-            </ol>`;
-    }
-    else if(validateInput(cargoLevel) === "Not a Number"){
-        //alert("Invalid cargoLevel!");
-        launchStatusCheck.innerHTML = `
-        <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
+//     }
+//     else if (validateInput(copilot) === "Is a Number"){
+//         launchStatusCheck.innerHTML = 
+//         `<h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
+//             <ol>
+//                 <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+//                 <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is not ready</li>
+//                 <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel} high enough for launch</li>
+//                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
+//             </ol>`;
+
+//     }
+//     else if (validateInput(fuelLevel) === "Not a Number"){
+//        // alert("Invalid fuel Level!");
+//        launchStatusCheck.innerHTML = `
+//         <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
+//             <ol>
+//                 <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+//                 <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
+//                 <li id="fuelStatus" data-testid="fuelStatus">FuelLevel invalid for launch</li>
+//                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${cargoLevel} low enough for launch</li>
+//             </ol>`;
+//     }
+//     else if(validateInput(cargoLevel) === "Not a Number"){
+//         //alert("Invalid cargoLevel!");
+//         launchStatusCheck.innerHTML = `
+//         <h2 id="launchStatus" data-testid="launchStatus">Awaiting Information Before Launch</h2>
         
-            <ol>
-                <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
-                <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
-                <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
-                <li id="cargoStatus" data-testid="cargoStatus">Cargo mass invalid for launch</li>
-            </ol>`;
+//             <ol>
+//                 <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+//                 <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
+//                 <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
+//                 <li id="cargoStatus" data-testid="cargoStatus">Cargo mass invalid for launch</li>
+//             </ol>`;
 
-    }
-else{
+//     }
+// else{
     
-if(fuelLevel<10000){
-    launchStatusCheck.style.color = "rgb(199, 37, 78)";
-    launchStatusCheck.innerHTML = `
-    <h2 id="launchStatus" data-testid="launchStatus" color ="rgb(199, 37, 78)">Shuttle Not Ready for Launch</h2>
+// if(fuelLevel<10000){
+//     launchStatusCheck.style.color = "rgb(199, 37, 78)";
+//     launchStatusCheck.innerHTML = `
+//     <h2 id="launchStatus" data-testid="launchStatus" color ="rgb(199, 37, 78)">Shuttle Not Ready for Launch</h2>
     
-        <ol>
-            <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready for launch</li>
-            <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready for launch</li>
-            <li id="fuelStatus" data-testid="fuelStatus">Fuel level low for launch</li>
-            <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${CargoLevel}</li>
-        </ol>`;
-}
-else if(cargoLevel>10000){
-    launchStatusCheck.style.color = "#C7254E";
-    launchStatusCheck.innerHTML = `
-    <h2 id="launchStatus" data-testid="launchStatus" color ="#C7254E">Shuttle Not Ready for launch</h2>
+//         <ol>
+//             <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready for launch</li>
+//             <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready for launch</li>
+//             <li id="fuelStatus" data-testid="fuelStatus">Fuel level low for launch</li>
+//             <li id="cargoStatus" data-testid="cargoStatus">Cargo mass ${CargoLevel}</li>
+//         </ol>`;
+// }
+// else if(cargoLevel>10000){
+//     launchStatusCheck.style.color = "#C7254E";
+//     launchStatusCheck.innerHTML = `
+//     <h2 id="launchStatus" data-testid="launchStatus" color ="#C7254E">Shuttle Not Ready for launch</h2>
     
-        <ol>
-            <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
-            <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
-            <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
-            <li id="cargoStatus" data-testid="cargoStatus">Cargo mass too heavy for launch</li>
-        </ol>`;
-}
-else{
+//         <ol>
+//             <li id="pilotStatus" data-testid="pilotStatus">Pilot ${pilot} is ready</li>
+//             <li id="copilotStatus" data-testid="copilotStatus">Co-pilot ${copilot} is ready</li>
+//             <li id="fuelStatus" data-testid="fuelStatus">Fuel level ${fuelLevel}</li>
+//             <li id="cargoStatus" data-testid="cargoStatus">Cargo mass too heavy for launch</li>
+//         </ol>`;
+// }
+// else{
     
-    launchStatusCheck.style.color = "#419F6A";
-    launchStatusCheck.innerHTML = `
-    <h2 id="launchStatus" data-testid="launchStatus" color = "#419F6A">Cargo Ready for Launch!</h2>
-        <ol>
-            <li id="pilotStatus" data-testid="pilotStatus" >Pilot ${pilot} is ready</li>
-            <li id="copilotStatus" data-testid="copilotStatus" >Co-pilot ${copilot} is ready</li>
-            <li id="fuelStatus" data-testid="fuelStatus" >Fuel level ${fuelLevel}</li>
-            <li id="cargoStatus" data-testid="cargoStatus" >Cargo mass ${cargoLevel}</li>
-        </ol>`;
+//     launchStatusCheck.style.color = "#419F6A";
+//     launchStatusCheck.innerHTML = `
+//     <h2 id="launchStatus" data-testid="launchStatus" color = "#419F6A">Cargo Ready for Launch!</h2>
+//         <ol>
+//             <li id="pilotStatus" data-testid="pilotStatus" >Pilot ${pilot} is ready</li>
+//             <li id="copilotStatus" data-testid="copilotStatus" >Co-pilot ${copilot} is ready</li>
+//             <li id="fuelStatus" data-testid="fuelStatus" >Fuel level ${fuelLevel}</li>
+//             <li id="cargoStatus" data-testid="cargoStatus" >Cargo mass ${cargoLevel}</li>
+//         </ol>`;
 
-}
-}
-}
+// }
+// }
+
 
 async function myFetch() {
     let planetsReturned;

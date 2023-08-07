@@ -9,7 +9,7 @@ window.addEventListener("load", function() {
         let copilotName = document.querySelector("input[name = copilotName]");
         let fuelLevel = document.querySelector("input[name = fuelLevel]");
         let cargoMass = document.querySelector("input[name = cargoMass]");
-        let list = `<div  id="faultyItems" data-testid="faultyItems">
+        let list = document.getElementById("faultyItems"); `<div  id="faultyItems" data-testid="faultyItems">
         <ol>
             <li id="pilotStatus" data-testid="pilotStatus" >${pilotName} Ready</li>
             <li id="copilotStatus" data-testid="copilotStatus" >${copilotName} Ready</li>
@@ -41,5 +41,17 @@ window.addEventListener("load", function() {
 
 
   // });
-   
+  //let listedPlanets;
+  // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+  //let listedPlanetsResponse= myFetch();
+  listedPlanetsResponse.then(function (result) {
+      listedPlanets = result;
+      console.log(listedPlanets);
+  }).then(function () {
+      console.log(listedPlanets);
+      let planetIndex = pickPlanet(listedPlanets);
+       addDestinationInfo(document, planetIndex.name, planetIndex.diameter, planetIndex.star, planetIndex.distance, planetIndex.moons, planetIndex.image);
+      // Below this comment call the appropriate helper functions to pick a planet from the list of planets and add that information to your destination.
+  })
+  
 });
