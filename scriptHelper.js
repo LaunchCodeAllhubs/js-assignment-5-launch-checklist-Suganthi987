@@ -56,6 +56,15 @@ function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
 
     let list = document.getElementById("faultyItems");
     list.style.visibility='hidden';
+    let pilotStatus = document.getElementById("pilotStatus");
+    let copilotStatus = document.getElementById("copilotStatus");
+    let fuelStatus = document.getElementById("fuelStatus");
+    let cargoStatus = document.getElementById("cargoStatus");
+    let launchStatus = document.getElementById("launchStatus");
+
+    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+    copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
+    list.style.visibility = 'hidden';
     //    faultyItems.style.visibility = "visible";
 //     if (validateInput(pilot) === "Is a Number"){ 
 //         launchStatusCheck.innerHTML = `
@@ -148,7 +157,8 @@ function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
 async function myFetch() {
     let planetsReturned;
 
-     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json");//.then( function(response) {  
+     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+        return response.json();//.then( function(response) {  
     // response.json().then(function(data){
     //    let pickone = pickPlanet();
     //    addDestinationInfo(document,data[pickone].name,data[pickone].diameter,data[pickone].star,data[pickone].distance,data[pickone].moons,data[pickone].image);
