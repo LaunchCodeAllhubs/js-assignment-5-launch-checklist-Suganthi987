@@ -148,12 +148,12 @@ function formSubmission(document,list, pilot, copilot, fuelLevel, cargoLevel) {
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {  
-    response.json().then(function(data){
-       let pickone = pickPlanet();
-       addDestinationInfo(document,data[pickone].name,data[pickone].diameter,data[pickone].star,data[pickone].distance,data[pickone].moons,data[pickone].image);
-    });
-});
+     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json");//.then( function(response) {  
+    // response.json().then(function(data){
+    //    let pickone = pickPlanet();
+    //    addDestinationInfo(document,data[pickone].name,data[pickone].diameter,data[pickone].star,data[pickone].distance,data[pickone].moons,data[pickone].image);
+   // });
+//});
     
     return planetsReturned;
 }
